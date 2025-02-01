@@ -25,15 +25,21 @@
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageIcon>googleiosmaps_128x128.png</PackageIcon>
     <PackageProjectUrl>https://github.com/AlexeyBuryanov/Net.Google.iOS.Maps</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AlexeyBuryanov/Net.Google.iOS.Maps</RepositoryUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>9.2.0.0</PackageVersion>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <PackageTags>google; maps; google-maps</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="Maps.targets" Pack="True" PackagePath="build/Net.Google.iOS.Maps.targets" />
     <None Include="Maps.targets" Pack="True" PackagePath="buildTransitive/Net.Google.iOS.Maps.targets" />
-    <None Include="./../License.md" Pack="True" PackagePath="License.md" />
+    <None Include="./../License.md" Pack="True" PackagePath="/" />
+    <None Include="./../Readme.md" Pack="True" PackagePath="/" />
     <None Include="googleiosmaps_128x128.png" Pack="True" PackagePath="googleiosmaps_128x128.png" />
   </ItemGroup>
 
