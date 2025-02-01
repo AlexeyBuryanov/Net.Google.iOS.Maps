@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0-ios</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>true</ImplicitUsings>
+    <IsBindingProject>true</IsBindingProject>
+    <NoBindingEmbedding>false</NoBindingEmbedding>
+    <SupportedOSPlatformVersion>15.0</SupportedOSPlatformVersion>
+    <RootNamespace>Google.Maps</RootNamespace>
+    <AssemblyName>Google.Maps</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>9.2.0.0</FileVersion>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Net.Google.iOS.Maps</PackageId>
+    <Title>Google APIs Maps iOS Library</Title>
+    <Summary>.NET for iOS bindings for Google APIs Maps iOS Library</Summary>
+    <Description>.NET for iOS bindings for Google APIs Maps iOS Library</Description>
+    <Authors>Microsoft, Oleksii Burianov</Authors>
+    <Owners>Oleksii Burianov</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageIcon>googleiosmaps_128x128.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/AlexeyBuryanov/Net.Google.iOS.Maps</PackageProjectUrl>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>9.2.0.0</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Maps.targets" Pack="True" PackagePath="build/Net.Google.iOS.Maps.targets" />
+    <None Include="Maps.targets" Pack="True" PackagePath="buildTransitive/Net.Google.iOS.Maps.targets" />
+    <None Include="./../License.md" Pack="True" PackagePath="License.md" />
+    <None Include="googleiosmaps_128x128.png" Pack="True" PackagePath="googleiosmaps_128x128.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Enums.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
+    <ObjcBindingCoreSource Include="Structs.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Build.Download" Version="0.11.4" PrivateAssets="None" />
+  </ItemGroup>
+
+</Project>
