@@ -30,7 +30,7 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>10.3.0.1</PackageVersion>
+    <PackageVersion>10.3.0.1-beta</PackageVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageTags>google; maps; google-maps</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
