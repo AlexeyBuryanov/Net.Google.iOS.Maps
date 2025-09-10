@@ -10,7 +10,7 @@
     <RootNamespace>Google.Maps</RootNamespace>
     <AssemblyName>Google.Maps</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>10.2.0.1</FileVersion>
+    <FileVersion>10.3.0.1</FileVersion>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsTrimmable>true</IsTrimmable>
@@ -30,7 +30,7 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>10.2.0.1-beta</PackageVersion>
+    <PackageVersion>10.3.0.1</PackageVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageTags>google; maps; google-maps</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
