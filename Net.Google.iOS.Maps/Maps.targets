@@ -631,9 +631,6 @@
       <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)GMSCoreResources.bundle\pl.lproj\GMSCore.strings" Visible="False">
         <LogicalName>GoogleMaps.bundle\GMSCoreResources.bundle\pl.lproj\GMSCore.strings</LogicalName>
       </BundleResource>
-      <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)GMSCoreResources.bundle\pt.lproj\GMSCore.strings" Visible="False">
-        <LogicalName>GoogleMaps.bundle\GMSCoreResources.bundle\pt.lproj\GMSCore.strings</LogicalName>
-      </BundleResource>
       <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)GMSCoreResources.bundle\pt_BR.lproj\GMSCore.strings" Visible="False">
         <LogicalName>GoogleMaps.bundle\GMSCoreResources.bundle\pt_BR.lproj\GMSCore.strings</LogicalName>
       </BundleResource>
