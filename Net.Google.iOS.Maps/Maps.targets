@@ -1,7 +1,6 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <_GoogleMapsAssemblyName>Google.Maps, Version=10.12.0.0, Culture=neutral, PublicKeyToken=null</_GoogleMapsAssemblyName>
     <_GoogleMapsSDKItemsFolder>GMps-10.12.0-sdk</_GoogleMapsSDKItemsFolder>
     <_GoogleMapsResItemsFolder>GMps-10.12.0-res</_GoogleMapsResItemsFolder>
     <_GoogleMapsSDKBaseFolder>$(XamarinBuildDownloadDir)$(_GoogleMapsSDKItemsFolder)\</_GoogleMapsSDKBaseFolder>
