@@ -29,6 +29,9 @@
   </ItemGroup>
 
   <Target Name="_GMpsDownloadedItems">
+    <!-- Fix permissions on extracted resources so codesign can read all files (e.g. GMSShaders.metallib) -->
+    <Exec Command="chmod -R a+r '$(XamarinBuildDownloadDir)$(_GoogleMapsResItemsFolder)'"
+          Condition="$([MSBuild]::IsOSPlatform('OSX')) AND Exists('$(XamarinBuildDownloadDir)$(_GoogleMapsResItemsFolder)')" />
     <ItemGroup>
       <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)Assets.car" Visible="False">
         <LogicalName>GoogleMaps.bundle\Assets.car</LogicalName>
