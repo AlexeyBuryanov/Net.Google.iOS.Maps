@@ -1,24 +1,14 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <_GoogleMapsSDKItemsFolder>GMps-10.12.0-sdk</_GoogleMapsSDKItemsFolder>
-    <_GoogleMapsResItemsFolder>GMps-10.12.0-res</_GoogleMapsResItemsFolder>
-    <_GoogleMapsSDKBaseFolder>$(XamarinBuildDownloadDir)$(_GoogleMapsSDKItemsFolder)\</_GoogleMapsSDKBaseFolder>
-    <_GoogleMapsResourcesBaseFolder>$(XamarinBuildDownloadDir)$(_GoogleMapsResItemsFolder)\GoogleMapsResources\GoogleMaps.bundle\</_GoogleMapsResourcesBaseFolder>
+    <_GoogleMapsSDKVersion>10.12.0</_GoogleMapsSDKVersion>
+    <_GoogleMapsDownloadDir Condition="'$(_GoogleMapsDownloadDir)'==''">$([System.Environment]::GetFolderPath(SpecialFolder.LocalApplicationData))/GoogleMapsDownload/</_GoogleMapsDownloadDir>
+    <_GoogleMapsSDKBaseFolder>$(_GoogleMapsDownloadDir)GMps-$(_GoogleMapsSDKVersion)-sdk/</_GoogleMapsSDKBaseFolder>
+    <_GoogleMapsResBaseFolder>$(_GoogleMapsDownloadDir)GMps-$(_GoogleMapsSDKVersion)-res/</_GoogleMapsResBaseFolder>
+    <_GoogleMapsResourcesBaseFolder>$(_GoogleMapsResBaseFolder)GoogleMapsResources/GoogleMaps.bundle/</_GoogleMapsResourcesBaseFolder>
   </PropertyGroup>
 
   <ItemGroup Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True')">
-    <XamarinBuildDownload Include="$(_GoogleMapsSDKItemsFolder)">
-      <!-- https://github.com/googlemaps/ios-maps-sdk -->
-      <Url>https://dl.google.com/geosdk/swiftpm/10.12.0/GoogleMaps_3p.xcframework.zip</Url>
-      <Kind>Zip</Kind>
-    </XamarinBuildDownload>
-    <XamarinBuildDownload Include="$(_GoogleMapsResItemsFolder)">
-      <Url>https://dl.google.com/geosdk/swiftpm/10.12.0/GoogleMapsResources.zip</Url>
-      <Kind>Zip</Kind>
-    </XamarinBuildDownload>
-    <XamarinBuildRestoreResources Include="_GMpsDownloadedItems" />
-
     <NativeReference Include="$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework">
       <Kind>Framework</Kind>
       <SmartLink>True</SmartLink>
@@ -28,10 +18,33 @@
     </NativeReference>
   </ItemGroup>
 
-  <Target Name="_GMpsDownloadedItems">
+  <Target Name="_GMpsDownload"
+          Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True')">
+    <MakeDir Directories="$(_GoogleMapsDownloadDir);$(_GoogleMapsSDKBaseFolder);$(_GoogleMapsResBaseFolder)" />
+    <!-- https://github.com/googlemaps/ios-maps-sdk -->
+    <DownloadFile SourceUrl="https://dl.google.com/geosdk/swiftpm/$(_GoogleMapsSDKVersion)/GoogleMaps_3p.xcframework.zip"
+                  DestinationFolder="$(_GoogleMapsDownloadDir)"
+                  SkipUnchangedFiles="true"
+                  Condition="!Exists('$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework')" />
+    <Unzip SourceFiles="$(_GoogleMapsDownloadDir)GoogleMaps_3p.xcframework.zip"
+           DestinationFolder="$(_GoogleMapsSDKBaseFolder)"
+           Condition="!Exists('$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework')" />
+    <DownloadFile SourceUrl="https://dl.google.com/geosdk/swiftpm/$(_GoogleMapsSDKVersion)/GoogleMapsResources.zip"
+                  DestinationFolder="$(_GoogleMapsDownloadDir)"
+                  SkipUnchangedFiles="true"
+                  Condition="!Exists('$(_GoogleMapsResourcesBaseFolder)Assets.car')" />
+    <Unzip SourceFiles="$(_GoogleMapsDownloadDir)GoogleMapsResources.zip"
+           DestinationFolder="$(_GoogleMapsResBaseFolder)"
+           Condition="!Exists('$(_GoogleMapsResourcesBaseFolder)Assets.car')" />
     <!-- Fix permissions on extracted resources so codesign can read all files (e.g. GMSShaders.metallib) -->
-    <Exec Command="chmod -R a+r '$(XamarinBuildDownloadDir)$(_GoogleMapsResItemsFolder)'"
-          Condition="$([MSBuild]::IsOSPlatform('OSX')) AND Exists('$(XamarinBuildDownloadDir)$(_GoogleMapsResItemsFolder)')" />
+    <Exec Command="chmod -R a+r '$(_GoogleMapsResBaseFolder)'"
+          Condition="$([MSBuild]::IsOSPlatform('OSX')) AND Exists('$(_GoogleMapsResBaseFolder)')" />
+  </Target>
+
+  <Target Name="_GMpsDownloadedItems"
+          DependsOnTargets="_GMpsDownload"
+          BeforeTargets="Build"
+          Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True')">
     <ItemGroup>
       <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)Assets.car" Visible="False">
         <LogicalName>GoogleMaps.bundle\Assets.car</LogicalName>
