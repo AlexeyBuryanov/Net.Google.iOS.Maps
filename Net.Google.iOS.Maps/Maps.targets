@@ -26,16 +26,22 @@
                   DestinationFolder="$(_GoogleMapsDownloadDir)"
                   SkipUnchangedFiles="true"
                   Condition="!Exists('$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework')" />
+    <!-- On macOS use system unzip to preserve symlinks and POSIX permissions inside the xcframework -->
+    <Exec Command="unzip -q -o '$(_GoogleMapsDownloadDir)GoogleMaps_3p.xcframework.zip' -d '$(_GoogleMapsSDKBaseFolder)'"
+          Condition="$([MSBuild]::IsOSPlatform('OSX')) AND !Exists('$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework')" />
     <Unzip SourceFiles="$(_GoogleMapsDownloadDir)GoogleMaps_3p.xcframework.zip"
            DestinationFolder="$(_GoogleMapsSDKBaseFolder)"
-           Condition="!Exists('$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework')" />
+           Condition="!$([MSBuild]::IsOSPlatform('OSX')) AND !Exists('$(_GoogleMapsSDKBaseFolder)GoogleMaps.xcframework')" />
     <DownloadFile SourceUrl="https://dl.google.com/geosdk/swiftpm/$(_GoogleMapsSDKVersion)/GoogleMapsResources.zip"
                   DestinationFolder="$(_GoogleMapsDownloadDir)"
                   SkipUnchangedFiles="true"
                   Condition="!Exists('$(_GoogleMapsResourcesBaseFolder)Assets.car')" />
+    <!-- On macOS use system unzip to preserve symlinks and POSIX permissions -->
+    <Exec Command="unzip -q -o '$(_GoogleMapsDownloadDir)GoogleMapsResources.zip' -d '$(_GoogleMapsResBaseFolder)'"
+          Condition="$([MSBuild]::IsOSPlatform('OSX')) AND !Exists('$(_GoogleMapsResourcesBaseFolder)Assets.car')" />
     <Unzip SourceFiles="$(_GoogleMapsDownloadDir)GoogleMapsResources.zip"
            DestinationFolder="$(_GoogleMapsResBaseFolder)"
-           Condition="!Exists('$(_GoogleMapsResourcesBaseFolder)Assets.car')" />
+           Condition="!$([MSBuild]::IsOSPlatform('OSX')) AND !Exists('$(_GoogleMapsResourcesBaseFolder)Assets.car')" />
     <!-- Fix permissions on extracted resources so codesign can read all files (e.g. GMSShaders.metallib) -->
     <Exec Command="chmod -R a+r '$(_GoogleMapsResBaseFolder)'"
           Condition="$([MSBuild]::IsOSPlatform('OSX')) AND Exists('$(_GoogleMapsResBaseFolder)')" />
