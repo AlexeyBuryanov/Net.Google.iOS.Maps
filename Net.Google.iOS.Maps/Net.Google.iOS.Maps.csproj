@@ -9,8 +9,8 @@
     <SupportedOSPlatformVersion>16.0</SupportedOSPlatformVersion>
     <RootNamespace>Google.Maps</RootNamespace>
     <AssemblyName>Google.Maps</AssemblyName>
-    <AssemblyVersion>10.12.5.0</AssemblyVersion>
-    <FileVersion>10.12.5</FileVersion>
+    <AssemblyVersion>10.12.7.0</AssemblyVersion>
+    <FileVersion>10.12.7</FileVersion>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <IsTrimmable>true</IsTrimmable>
@@ -30,7 +30,7 @@
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageReadmeFile>Readme.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>10.12.5-beta</PackageVersion>
+    <PackageVersion>10.12.7-beta</PackageVersion>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageTags>google; maps; google-maps</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
