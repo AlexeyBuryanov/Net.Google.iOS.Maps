@@ -15,10 +15,7 @@
     </NativeReference>
   </ItemGroup>
 
-  <Target Name="_GMpsItems"
-          BeforeTargets="Build"
-          Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True')">
-    <ItemGroup>
+  <ItemGroup Condition="('$(OutputType)'!='Library' OR '$(IsAppExtension)'=='True')">
       <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)Assets.car" Visible="False">
         <LogicalName>GoogleMaps.bundle\Assets.car</LogicalName>
         <Optimize>False</Optimize>
@@ -974,7 +971,6 @@
       <BundleResource Include="$(_GoogleMapsResourcesBaseFolder)zh_TW.lproj\MapsSDKAccessibility.strings" Visible="False">
         <LogicalName>GoogleMaps.bundle\zh_TW.lproj\MapsSDKAccessibility.strings</LogicalName>
       </BundleResource>
-    </ItemGroup>
-  </Target>
+  </ItemGroup>
 
 </Project>
